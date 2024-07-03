@@ -1,0 +1,128 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+
+# Layout cops
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Layout/LineLength:
+  Max: 120
+  AutoCorrect: true
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  Enabled: true
+  EnforcedStyle: indented
+
+Layout/ArgumentAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+# Lint cops
+Lint/AmbiguousBlockAssociation:
+  AllowedMethods: [proc, map]
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/UriRegexp:
+  Enabled: false
+
+# Metrics cops
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+# Naming
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+# Style cops
+Style/FetchEnvVar:
+  Enabled: false
+
+Style/AccessorGrouping:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GlobalVars:
+  AllowedVariables: [$redis]
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/NumericPredicate:
+  AllowedMethods: ["=="]
+
+Style/Proc:
+  Enabled: false
+
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+
+Style/ReturnNil:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/SelectByRegexp:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: no_comma
