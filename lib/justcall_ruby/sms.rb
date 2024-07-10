@@ -28,39 +28,39 @@ module JustCall
       send: "texts/new".freeze,
     }.freeze
 
-    def initialize(client)
+    def initialize(client:)
       @client = client
     end
 
     def list(params = {})
-      params = standardize_body_data(params, LIST_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: LIST_ATTRS[:permitted])
       endpoint = ENDPOINTS[:list] % convert_params_to_request_query(params)
 
-      get_request(@client, endpoint)
+      get_request(client: @client, endpoint: endpoint)
     end
 
     def fetch(sms_id)
       endpoint = ENDPOINTS[:fetch] % sms_id
 
-      get_request(@client, endpoint)
+      get_request(client: @client, endpoint: endpoint)
     end
 
     def check_reply(params)
       requires!(params, *CHECK_REPLY_ATTRS[:required])
 
       endpoint = ENDPOINTS[:check_reply]
-      params = standardize_body_data(params, CHECK_REPLY_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: CHECK_REPLY_ATTRS[:permitted])
 
-      post_request(@client, endpoint, params)
+      post_request(client: @client, endpoint: endpoint, data: params)
     end
 
     def send(params)
       requires!(params, *SEND_ATTRS[:required])
 
       endpoint = ENDPOINTS[:send]
-      params = standardize_body_data(params, SEND_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: SEND_ATTRS[:permitted])
 
-      post_request(@client, endpoint, params)
+      post_request(client: @client, endpoint: endpoint, data: params)
     end
   end
 end

@@ -14,11 +14,11 @@ module JustCall
     end
 
     def call
-      @call ||= JustCall::Call.new(self)
+      @call ||= JustCall::Call.new(client: self)
     end
 
     def sms
-      @sms ||= JustCall::SMS.new(self)
+      @sms ||= JustCall::SMS.new(client: self)
     end
   end
 end

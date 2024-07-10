@@ -1,6 +1,6 @@
 module JustCall
   class Response
-    attr_accessor :success
+    attr_reader :body, :response, :sucess
 
     def initialize(response)
       @response = response
@@ -11,14 +11,13 @@ module JustCall
       when Net::HTTPNotFound
         raise JustCall::Error::NotFound, @response.body
       when Net::HTTPOK, Net::HTTPSuccess, Net::HTTPNoContent, Net::HTTPCreated
-        self.success = true
-        data = (JSON.parse(@response.body) if @response.body.present?)
-
-        @data =
-          if data.is_a?(Hash)
-            data.deep_symbolize_keys
-          elsif data.is_a?(Array)
-            data.map(&:deep_symbolize_keys)
+        @success = true
+        body = (JSON.parse(@response.body) if @response.body.present?)
+        @body =
+          if body.is_a?(Hash)
+            body.deep_symbolize_keys
+          elsif body.is_a?(Array)
+            body.map(&:deep_symbolize_keys)
           end
       else
         puts "-- DEBUG: #{self}: RequestError: #{@response.inspect}" if JustCall.config.full_debug?
@@ -34,15 +33,11 @@ module JustCall
     end
 
     def [](key)
-      @data[key]
-    end
-
-    def body
-      @data
+      body[key]
     end
 
     def fetch(key)
-      @data.fetch(key)
+      body.fetch(key)
     end
 
     def success?

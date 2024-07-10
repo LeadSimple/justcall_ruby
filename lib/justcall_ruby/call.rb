@@ -36,35 +36,35 @@ module JustCall
       download_recording: "calls/%s/recording/download".freeze,
     }.freeze
 
-    def initialize(client)
+    def initialize(client:)
       @client = client
     end
 
     def list(params = {})
-      params = standardize_body_data(params, LIST_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: LIST_ATTRS[:permitted])
       endpoint = ENDPOINTS[:list] % convert_params_to_request_query(params)
 
-      get_request(@client, endpoint)
+      get_request(client: @client, endpoint: endpoint)
     end
 
     def fetch(call_id, params = {})
-      params = standardize_body_data(params, FETCH_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: FETCH_ATTRS[:permitted])
       endpoint = ENDPOINTS[:fetch] % [call_id, convert_params_to_request_query(params)] # rubocop:disable Style/FormatString
 
-      get_request(@client, endpoint)
+      get_request(client: @client, endpoint: endpoint)
     end
 
     def update(call_id, params)
       endpoint = ENDPOINTS[:update] % call_id
-      params = standardize_body_data(params, UPDATE_ATTRS[:permitted])
+      params = standardize_body_data(submitted_attrs: params, permitted_attrs: UPDATE_ATTRS[:permitted])
 
-      put_request(@client, endpoint, params)
+      put_request(client: @client, endpoint: endpoint, data: params)
     end
 
     def download_recording(call_id)
       endpoint = ENDPOINTS[:download_recording] % call_id
 
-      get_request(@client, endpoint)
+      get_request(client: @client, endpoint: endpoint)
     end
   end
 end
