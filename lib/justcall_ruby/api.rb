@@ -59,9 +59,8 @@ module JustCall
 
     def standardize_body_data(submitted_attrs:, permitted_attrs:)
       submitted_attrs = submitted_attrs.deep_transform_keys(&:to_sym)
-      permitted_attrs = submitted_attrs.select! { |k, _| permitted_attrs.include?(k) } || submitted_attrs
 
-      permitted_attrs.deep_transform_keys { |k| k.to_s.camelize(:lower) }
+      submitted_attrs.select! { |k, _| permitted_attrs.include?(k) } || submitted_attrs
     end
 
     def convert_params_to_request_query(params)
