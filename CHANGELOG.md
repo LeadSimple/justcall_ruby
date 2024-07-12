@@ -1,3 +1,8 @@
+## [0.1.1] - 2024-07-11
+
+- Fixed bug where snake-cased keys were being converetd to camel-cased keys for API request params
+- JustCall's API actually expects snake-cased keys
+
 ## [0.1.0] - 2024-07-10
 
 The initial release. Provides all basic Ruby wrapper functionality for JustCall's V2 API.
