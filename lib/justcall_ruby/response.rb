@@ -1,6 +1,6 @@
 module JustCall
   class Response
-    attr_reader :body, :response, :sucess
+    attr_reader :body, :response, :success
 
     def initialize(response)
       @response = response
